@@ -1,14 +1,3 @@
-import { Center, Container } from '@chakra-ui/react';
-import { NextPage } from 'next';
+import TopPage from '@/components/page/top/Top.page';
 
-const Home: NextPage = () => {
-  return (
-    <>
-      <Container>
-        <Center h="10rem">ボイラープレート</Center>
-      </Container>
-    </>
-  );
-};
-
-export default Home;
+export default TopPage;
