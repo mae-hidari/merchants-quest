@@ -1,5 +1,4 @@
 import { Box, chakra, Flex } from '@chakra-ui/react';
-import { useQRCode } from 'next-qrcode';
 import { FC, useCallback, useState } from 'react';
 
 import {
@@ -7,7 +6,9 @@ import {
   BaseImage,
   BaseModal,
   BaseModalPropsType,
+  QrCode,
 } from '@/components/ui';
+import { useUserData } from '@/hooks';
 import { RumorType } from '@/types';
 
 export type RumorModalPropsType = Omit<BaseModalPropsType, 'children'> & {
@@ -20,7 +21,8 @@ export const RumorModal: FC<RumorModalPropsType> = ({
   rumor,
 }) => {
   const [mode, setMode] = useState<'desc' | 'expo'>('desc');
-  const { Canvas } = useQRCode();
+
+  const { user } = useUserData();
 
   const _onClose = useCallback(() => {
     setMode('desc');
@@ -60,18 +62,11 @@ export const RumorModal: FC<RumorModalPropsType> = ({
   const expo = {
     content: (
       <Flex alignItems="center">
-        <Canvas
-          options={{
-            color: {
-              dark: '#000000',
-              light: '#ffffff',
-            },
-            level: 'L',
-            margin: 2,
-            scale: 1,
-            width: 150,
+        <QrCode
+          data={{
+            code: rumor.code,
+            name: user?.name || '',
           }}
-          text={rumor.code}
         />
       </Flex>
     ),

@@ -1,35 +1,52 @@
-import { Flex, StackProps, useDisclosure, VStack } from '@chakra-ui/react';
-import { FC } from 'react';
+import { StackProps, useDisclosure, VStack } from '@chakra-ui/react';
+import { FC, useCallback, useState } from 'react';
 
 import { RumorModal } from '@/components/model/rumor/RumorModal';
-import { BaseImage, Item } from '@/components/ui';
-import { RumorData } from '@/data';
+import { BaseImage, ListItem } from '@/components/ui';
+import { RumorType } from '@/types';
 
-export type RumorListPropsType = StackProps;
+export type RumorListPropsType = StackProps & {
+  rumors: RumorType[];
+};
 
-export const RumorList: FC<RumorListPropsType> = ({ ...stackProps }) => {
+export const RumorList: FC<RumorListPropsType> = ({
+  rumors,
+  ...stackProps
+}) => {
+  const [currentRumor, setCurrentRumor] = useState<RumorType | null>();
   const { isOpen, onClose, onOpen } = useDisclosure();
+
+  const onClickRumor = useCallback((rumor: RumorType) => {
+    setCurrentRumor(rumor);
+    onOpen();
+  }, []);
 
   return (
     <>
       <VStack pb="1rem" pt="2rem" px="1rem" spacing="2rem" {...stackProps}>
-        <Item
-          content={
-            <Flex alignItems="center" fontSize="xl" gap="0.2rem">
-              <BaseImage
-                alt={'吹き出し'}
-                height="24px"
-                src={'/image/bubble.png'}
-                width="20px"
-              />
-              呪われた装備
-            </Flex>
-          }
-          title="うわさ1"
-          onClick={onOpen}
-        ></Item>
+        {rumors.map((rumor) => (
+          <ListItem
+            flexProps={{
+              fontSize: 'xl',
+              gap: '0.3rem',
+            }}
+            key={rumor.code}
+            title={`うわさ${rumor.id}`}
+            onClick={() => onClickRumor(rumor)}
+          >
+            <BaseImage
+              alt={'吹き出し'}
+              height="24px"
+              src={'/image/bubble.png'}
+              width="20px"
+            />
+            {rumor.title}
+          </ListItem>
+        ))}
       </VStack>
-      <RumorModal isOpen={isOpen} rumor={RumorData[0]} onClose={onClose} />
+      {currentRumor && (
+        <RumorModal isOpen={isOpen} rumor={currentRumor} onClose={onClose} />
+      )}
     </>
   );
 };
