@@ -8,7 +8,6 @@ import {
   BaseModalPropsType,
   QrCode,
 } from '@/components/ui';
-import { useUserData } from '@/hooks';
 import { RumorType } from '@/types';
 
 export type RumorModalPropsType = Omit<BaseModalPropsType, 'children'> & {
@@ -22,8 +21,6 @@ export const RumorModal: FC<RumorModalPropsType> = ({
 }) => {
   const [mode, setMode] = useState<'desc' | 'expo'>('desc');
 
-  const { user } = useUserData();
-
   const _onClose = useCallback(() => {
     setMode('desc');
     onClose();
@@ -34,7 +31,7 @@ export const RumorModal: FC<RumorModalPropsType> = ({
       <chakra.p whiteSpace="pre-wrap">{`${rumor.description}`}</chakra.p>
     ),
     footer: (
-      <Flex gap="1rem">
+      <Flex gap="3rem">
         <BaseButton h="2rem" onClick={_onClose}>
           閉じる
         </BaseButton>
@@ -62,12 +59,7 @@ export const RumorModal: FC<RumorModalPropsType> = ({
   const expo = {
     content: (
       <Flex alignItems="center">
-        <QrCode
-          data={{
-            code: rumor.code,
-            name: user?.name || '',
-          }}
-        />
+        <QrCode code={rumor.code} />
       </Flex>
     ),
     footer: (
@@ -80,7 +72,7 @@ export const RumorModal: FC<RumorModalPropsType> = ({
     header: (
       <Flex flexDirection="column" gap="1rem">
         <Flex justifyContent="center">{rumor.title}を教える</Flex>
-        <chakra.p fontSize="sm">※うわさを教えても無くなりません。</chakra.p>
+        <chakra.p fontSize="sm">※うわさを教えても無くならない。</chakra.p>
       </Flex>
     ),
   };

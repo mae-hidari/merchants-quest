@@ -26,7 +26,13 @@ export const BaseModal: FC<BaseModalPropsType> = ({
   const [isMiddleDisplay] = useMediaQuery('(max-width: 420px)');
 
   return (
-    <Modal isCentered autoFocus={false} {...modalProps}>
+    <Modal
+      isCentered
+      autoFocus={false}
+      closeOnOverlayClick={false}
+      finalFocusRef={undefined}
+      {...modalProps}
+    >
       <ModalOverlay />
       <ModalContent
         border="2px"
@@ -43,7 +49,7 @@ export const BaseModal: FC<BaseModalPropsType> = ({
         </ModalBody>
 
         {footer && (
-          <ModalFooter display="flex" justifyContent="center">
+          <ModalFooter display="flex" justifyContent="center" pt="3rem">
             {footer}
           </ModalFooter>
         )}
