@@ -8,7 +8,7 @@ import {
 import { FC, useCallback, useState } from 'react';
 
 import { RumorImportModal } from '@/components/model';
-import { ItemList } from '@/components/model/item';
+import { ItemImportModal, ItemList } from '@/components/model/item';
 import { RumorList } from '@/components/model/rumor/RumorList/RumorList';
 import { useTopContent } from '@/components/page/top/use-top-content';
 import { BaseButton, PixelFlame } from '@/components/ui';
@@ -20,7 +20,17 @@ export type TopContentPropsType = StackProps;
 export const TopContent: FC<BoxProps> = ({ ...restProps }) => {
   const { items, rumors, user } = useTopContent();
 
-  const { isOpen, onClose, onOpen } = useDisclosure();
+  const {
+    isOpen: isOpenRumor,
+    onClose: onCloseRumor,
+    onOpen: onOpenRumor,
+  } = useDisclosure();
+
+  const {
+    isOpen: isOpenItem,
+    onClose: onCloseItem,
+    onOpen: onOpenItem,
+  } = useDisclosure();
 
   const [mode, setMode] = useState<TopPageModeType>('rumor');
 
@@ -50,7 +60,7 @@ export const TopContent: FC<BoxProps> = ({ ...restProps }) => {
               display="flex"
               fontSize="lg"
               pl="1rem"
-              onClick={onOpen}
+              onClick={onOpenRumor}
             >
               うわさを教わる
             </PixelFlame>
@@ -61,6 +71,7 @@ export const TopContent: FC<BoxProps> = ({ ...restProps }) => {
               display="flex"
               fontSize="lg"
               pl="1rem"
+              onClick={onOpenItem}
             >
               アイテムを貰う
             </PixelFlame>
@@ -74,6 +85,7 @@ export const TopContent: FC<BoxProps> = ({ ...restProps }) => {
 
         <HStack h="8%">
           <BaseButton
+            selectable
             fontSize="xl"
             selected={mode === 'rumor'}
             onClick={() => onClickModeTab('rumor')}
@@ -81,6 +93,7 @@ export const TopContent: FC<BoxProps> = ({ ...restProps }) => {
             うわさ
           </BaseButton>
           <BaseButton
+            selectable
             fontSize="xl"
             selected={mode === 'item'}
             onClick={() => onClickModeTab('item')}
@@ -89,7 +102,8 @@ export const TopContent: FC<BoxProps> = ({ ...restProps }) => {
           </BaseButton>
         </HStack>
       </VStack>
-      <RumorImportModal isOpen={isOpen} onClose={onClose} />
+      <RumorImportModal isOpen={isOpenRumor} onClose={onCloseRumor} />
+      <ItemImportModal isOpen={isOpenItem} onClose={onCloseItem} />
     </>
   );
 };

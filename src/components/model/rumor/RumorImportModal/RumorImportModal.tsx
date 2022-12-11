@@ -7,7 +7,7 @@ import {
   BaseModalPropsType,
   QrReader,
 } from '@/components/ui';
-import { useUserData } from '@/hooks';
+import { useTransactions } from '@/hooks';
 import { RumorType, ScanProtocolType } from '@/types';
 
 export type RumorImportModalType = Omit<BaseModalPropsType, 'children'>;
@@ -21,7 +21,7 @@ export const RumorImportModal: FC<RumorImportModalType> = ({
     name: string;
     rumor: RumorType;
   } | null>(null);
-  const { addRumor } = useUserData();
+  const { addRumor } = useTransactions();
 
   const onScan = useCallback(
     (data: ScanProtocolType) => {
@@ -57,7 +57,7 @@ export const RumorImportModal: FC<RumorImportModalType> = ({
         </BaseButton>
       </Flex>
     ),
-    header: <span>結果を読取る</span>,
+    header: <span>うわさQRコードを読取る</span>,
   };
 
   const success = {
@@ -82,7 +82,7 @@ export const RumorImportModal: FC<RumorImportModalType> = ({
 
   const failed = {
     content: (
-      <Flex alignItems="center" flexDirection="column" w="full">
+      <Flex alignItems="center" justifyContent="center" w="full">
         取引に失敗した...
       </Flex>
     ),
@@ -93,7 +93,7 @@ export const RumorImportModal: FC<RumorImportModalType> = ({
         </BaseButton>
       </Flex>
     ),
-    header: <span>失敗...</span>,
+    header: <span>失敗</span>,
   };
 
   return (

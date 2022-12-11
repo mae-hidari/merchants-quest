@@ -1,47 +1,24 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useCookies } from 'react-cookie';
+import { useRecoilState } from 'recoil';
 
-import { RumorData } from '@/data';
-import { RumorType, ScanProtocolType, UserType } from '@/types';
+import { userState } from '@/state';
+import { UserType } from '@/types';
 
 export const useUserData = () => {
   const [cookies, setCookie] = useCookies(['user-data']);
-  const [user, setUser] = useState<UserType | null>(null);
+  const [user, _setUser] = useRecoilState(userState);
 
   useEffect(() => {
     if (!cookies['user-data']) return;
-    setUser(cookies['user-data']);
+    _setUser(cookies['user-data']);
   }, [cookies]);
 
-  const addRumor = useCallback(
-    (
-      data: ScanProtocolType,
-      callback: { failed: VoidFunction; success: (rumor: RumorType) => void },
-    ) => {
-      console.info('🚀 ~ data', data);
-      if (!data.code) {
-        callback.failed();
-        return;
-      }
+  const setUser = useCallback((user: UserType) => {
+    setCookie('user-data', { ...user });
+  }, []);
 
-      const target = RumorData.find((v) => v.code === data.code);
-
-      if (user && target) {
-        console.log('🚀 ~ target', target);
-        setCookie('user-data', {
-          ...user,
-          rumorIds: Array.from(new Set([...user.rumorIds, target.id])),
-        } as UserType);
-        callback.success(target);
-        return;
-      } else {
-        callback.failed();
-      }
-    },
-    [user],
-  );
-
-  return { addRumor, user };
+  return { setUser, user };
 };
 
 export type UserDataHookType = ReturnType<typeof useUserData>;

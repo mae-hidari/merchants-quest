@@ -3,6 +3,7 @@ import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import { CookiesProvider, useCookies } from 'react-cookie';
+import { RecoilRoot } from 'recoil';
 import { CHAKRA_THEME } from 'src/constants';
 
 import { TestUser } from '@/data';
@@ -15,11 +16,13 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
   }, []);
 
   return (
-    <CookiesProvider>
-      <ChakraProvider theme={CHAKRA_THEME}>
-        <Component {...pageProps} />
-      </ChakraProvider>
-    </CookiesProvider>
+    <RecoilRoot>
+      <CookiesProvider>
+        <ChakraProvider theme={CHAKRA_THEME}>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </CookiesProvider>
+    </RecoilRoot>
   );
 };
 
