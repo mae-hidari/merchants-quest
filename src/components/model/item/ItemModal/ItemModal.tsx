@@ -1,9 +1,12 @@
+import { DeleteIcon } from '@chakra-ui/icons';
 import {
+  Box,
   chakra,
   Flex,
   HStack,
   ListItem,
   OrderedList,
+  Spacer,
   VStack,
 } from '@chakra-ui/react';
 import { FC, useCallback, useEffect, useState } from 'react';
@@ -30,9 +33,9 @@ export const ItemModal: FC<ItemModalPropsType> = ({
   item,
   onClose,
 }) => {
-  const [mode, setMode] = useState<'desc' | 'ready' | 'expo' | 'result'>(
-    'desc',
-  );
+  const [mode, setMode] = useState<
+    'desc' | 'ready' | 'expo' | 'result' | 'delete'
+  >('desc');
   const [tranResult, setTranResult] = useState<'success' | 'failed'>('failed');
   const { removeItem } = useTransactions();
 
@@ -73,6 +76,10 @@ export const ItemModal: FC<ItemModalPropsType> = ({
     }
   }, [item, tranResult]);
 
+  const onClickDelete = useCallback(() => {
+    removeItem(item, { failed: _onClose, success: _onClose });
+  }, [item]);
+
   const desc = {
     content: (
       <Flex alignItems="center" flexDirection="column">
@@ -83,7 +90,7 @@ export const ItemModal: FC<ItemModalPropsType> = ({
       </Flex>
     ),
     footer: (
-      <Flex gap="1rem">
+      <Flex gap="3rem">
         <BaseButton h="2rem" onClick={_onClose}>
           閉じる
         </BaseButton>
@@ -92,7 +99,18 @@ export const ItemModal: FC<ItemModalPropsType> = ({
         </BaseButton>
       </Flex>
     ),
-    header: <ItemName height="29px" item={item} width="25px"></ItemName>,
+    header: (
+      <Flex alignContent="center" w="full">
+        <Spacer />
+        <Box pl="1rem">
+          <ItemName height="29px" item={item} width="25px"></ItemName>
+        </Box>
+        <Spacer />
+        <Box lineHeight="normal" onClick={() => setMode('delete')}>
+          <DeleteIcon />
+        </Box>
+      </Flex>
+    ),
   };
 
   const ready = {
@@ -111,7 +129,7 @@ export const ItemModal: FC<ItemModalPropsType> = ({
       </Flex>
     ),
     footer: (
-      <Flex gap="1rem">
+      <Flex gap="3rem">
         <BaseButton h="2rem" onClick={() => setMode('desc')}>
           戻る
         </BaseButton>
@@ -133,7 +151,7 @@ export const ItemModal: FC<ItemModalPropsType> = ({
       <Flex alignItems="center" flexDirection="column">
         <Flex flexDirection="column" justifyContent="end" p="2rem">
           <ItemName height="24px" item={item} width="20px"></ItemName>
-          <ItemPrice>{item.price}</ItemPrice>
+          <ItemPrice gap="0.5rem">{item.price}</ItemPrice>
         </Flex>
         <QrCode code={item.code} />
       </Flex>
@@ -177,6 +195,25 @@ export const ItemModal: FC<ItemModalPropsType> = ({
     header: <span>取引結果は？</span>,
   };
 
+  const deleteItem = {
+    content: <Flex alignItems="center">このアイテムを本当に捨てますか？</Flex>,
+    footer: (
+      <Flex gap="3rem">
+        <BaseButton h="2rem" onClick={() => setMode('desc')}>
+          戻る
+        </BaseButton>
+        <BaseButton h="2rem" onClick={onClickDelete}>
+          捨てる
+        </BaseButton>
+      </Flex>
+    ),
+    header: (
+      <Flex>
+        <ItemName height="29px" item={item} width="25px"></ItemName>
+      </Flex>
+    ),
+  };
+
   return (
     <>
       <BaseModal
@@ -184,6 +221,7 @@ export const ItemModal: FC<ItemModalPropsType> = ({
         {...(mode === 'ready' && ready)}
         {...(mode === 'expo' && expo)}
         {...(mode === 'result' && result)}
+        {...(mode === 'delete' && deleteItem)}
         isOpen={isOpen}
         onClose={_onClose}
       ></BaseModal>

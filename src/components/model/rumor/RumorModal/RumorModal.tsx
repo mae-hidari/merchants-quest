@@ -31,7 +31,7 @@ export const RumorModal: FC<RumorModalPropsType> = ({
       <chakra.p whiteSpace="pre-wrap">{`${rumor.description}`}</chakra.p>
     ),
     footer: (
-      <Flex gap="1rem">
+      <Flex gap="3rem">
         <BaseButton h="2rem" onClick={_onClose}>
           閉じる
         </BaseButton>

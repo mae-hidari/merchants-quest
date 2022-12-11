@@ -33,7 +33,11 @@ export const ItemImportModal: FC<ItemImportModalType> = ({
   );
 
   useEffect(() => {
-    if (mode === 'failed' || mode === 'failed:alreadyHave') {
+    if (
+      mode === 'failed' ||
+      mode === 'failed:alreadyHave' ||
+      mode === 'success'
+    ) {
       startTimer();
       return () => {
         clearTimer();
@@ -126,14 +130,12 @@ export const ItemImportModal: FC<ItemImportModalType> = ({
   };
 
   return (
-    <>
-      <BaseModal
-        {...(mode === 'scan' && scan)}
-        {...(mode === 'success' && success)}
-        {...((mode === 'failed' || mode === 'failed:alreadyHave') && failed)}
-        isOpen={isOpen}
-        onClose={onClose}
-      ></BaseModal>
-    </>
+    <BaseModal
+      {...(mode === 'scan' && scan)}
+      {...(mode === 'success' && success)}
+      {...((mode === 'failed' || mode === 'failed:alreadyHave') && failed)}
+      isOpen={isOpen}
+      onClose={onClose}
+    ></BaseModal>
   );
 };
