@@ -18,7 +18,11 @@ export const useUserData = () => {
     setCookie('user-data', { ...user });
   }, []);
 
-  return { setUser, user };
+  const resetUser = useCallback(() => {
+    setCookie('user-data', { ...user, itemIds: [], rumorIds: [] } as UserType);
+  }, [user]);
+
+  return { resetUser, setUser, user };
 };
 
 export type UserDataHookType = ReturnType<typeof useUserData>;
