@@ -19,11 +19,14 @@ export const BaseButton: FC<BaseButtonPropsType> = ({
         ? {
             _focus: { background: 'white' },
             bgColor: 'white',
+            border: '2px',
+            borderColor: 'white',
             color: 'black',
           }
         : {
             _focus: { background: 'black' },
             bgColor: 'black',
+            border: '2px',
             borderColor: 'white',
           })}
       {...(!selectable && {
@@ -31,7 +34,6 @@ export const BaseButton: FC<BaseButtonPropsType> = ({
         _focus: { bg: 'none' },
         _hover: { bg: 'none' },
       })}
-      border="2px"
       h="full"
       lineHeight="0"
       rounded="sm"
