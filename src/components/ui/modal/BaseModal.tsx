@@ -29,6 +29,7 @@ export const BaseModal: FC<BaseModalPropsType> = ({
     <Modal
       isCentered
       autoFocus={false}
+      closeOnEsc={false}
       closeOnOverlayClick={false}
       finalFocusRef={undefined}
       {...modalProps}

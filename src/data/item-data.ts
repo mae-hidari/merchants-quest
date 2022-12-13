@@ -3,18 +3,18 @@ import { ItemType } from '@/types';
 export const ItemData: ItemType[] = [
   {
     code: 'I001',
-    description: `神に仕える聖職者によって祈りが込められた聖なる水。`,
+    description: `テストアイテム1`,
     iconName: 'holy-water',
     id: 1,
-    name: '聖水',
+    name: 'テストアイテム1',
     price: 1000,
   },
   {
     code: 'I002',
-    description: `test`,
+    description: `テストアイテム2`,
     iconName: 'holy-water',
     id: 2,
-    name: 'test',
+    name: 'テストアイテム2',
     price: 200,
   },
   {
@@ -35,10 +35,10 @@ export const ItemData: ItemType[] = [
   },
   {
     code: 'I005',
-    description: `レッドパワーオーブ`,
+    description: `テストアイテム5`,
     iconName: 'holy-water',
     id: 5,
-    name: 'レッドパワーオーブ',
+    name: 'テストアイテム5',
     price: 200,
   },
 ];
