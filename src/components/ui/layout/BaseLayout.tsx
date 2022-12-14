@@ -1,5 +1,5 @@
 import { Box, BoxProps } from '@chakra-ui/react';
-import { FC, ReactElement } from 'react';
+import { FC, ReactElement, useEffect, useState } from 'react';
 
 type BaseLayoutPropsType = {
   footer?: ReactElement;
@@ -12,8 +12,16 @@ export const BaseLayout: FC<BaseLayoutPropsType> = ({
   header,
   ...boxProps
 }) => {
+  const [windowHeight, setWindowHeight] = useState(0);
+
+  useEffect(() => {
+    const { innerHeight } = window;
+
+    setWindowHeight(innerHeight - 12);
+  }, []);
+
   return (
-    <Box h="calc(100vh - 12px)" m="5px 4px 8px 4px" {...boxProps}>
+    <Box h={windowHeight} m="5px 4px 8px 4px" {...boxProps}>
       {header && header}
       {children}
       {footer && footer}

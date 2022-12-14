@@ -6,18 +6,16 @@ import { CookiesProvider, useCookies } from 'react-cookie';
 import { RecoilRoot } from 'recoil';
 import { CHAKRA_THEME } from 'src/constants';
 
-// import { TestUser } from '@/data';
 import { UserInitialModal } from '@/components/model/user';
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
-  const [cookie, setCoolie] = useCookies(['user-data']);
+  const [cookie] = useCookies(['user-data']);
 
   const { isOpen, onClose, onOpen } = useDisclosure();
 
   useEffect(() => {
     if (!cookie['user-data'] && !isOpen) {
       onOpen();
-      // setCoolie('user-data', TestUser);
     }
   }, []);
 
