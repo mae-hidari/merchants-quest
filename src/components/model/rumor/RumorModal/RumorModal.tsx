@@ -1,4 +1,4 @@
-import { Box, chakra, Flex } from '@chakra-ui/react';
+import { chakra, Flex } from '@chakra-ui/react';
 import { FC, useCallback, useState } from 'react';
 
 import {
@@ -49,9 +49,8 @@ export const RumorModal: FC<RumorModalPropsType> = ({
             src={'/image/bubble.png'}
             width="16px"
           />
-          うわさ{rumor.id}
+          {rumor.title}
         </Flex>
-        <Box>「{rumor.title}」</Box>
       </Flex>
     ),
   };

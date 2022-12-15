@@ -31,7 +31,7 @@ export const RumorList: FC<RumorListPropsType> = ({
               gap: '0.3rem',
             }}
             key={rumor.code}
-            title={`うわさ${rumor.id}`}
+            title={`うわさ No.${rumor.id}`}
             onClick={() => onClickRumor(rumor)}
           >
             <BaseImage

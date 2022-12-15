@@ -31,7 +31,7 @@ export const ItemList: FC<ItemListPropsType> = ({ items, ...stackProps }) => {
               justifyContent: 'space-between',
             }}
             key={item.code}
-            title={`アイテム${item.id}`}
+            title={`アイテム No.${item.id}`}
             onClick={() => onClickItem(item)}
           >
             <ItemName height="24px" item={item} width="20px"></ItemName>

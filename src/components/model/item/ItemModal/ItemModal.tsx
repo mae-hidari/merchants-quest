@@ -181,7 +181,7 @@ export const ItemModal: FC<ItemModalPropsType> = ({
           selected={tranResult === 'failed'}
           onClick={() => onClickSelect('failed')}
         >
-          失敗...
+          失敗
         </SelectButton>
       </HStack>
     ),
@@ -192,7 +192,7 @@ export const ItemModal: FC<ItemModalPropsType> = ({
         </TimeLoadingButton>
       </Flex>
     ),
-    header: <span>取引結果は？</span>,
+    header: <span>取引結果を選択</span>,
   };
 
   const deleteItem = {
