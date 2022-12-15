@@ -14,6 +14,10 @@ const chakraComponentStyle = {
 export const CHAKRA_THEME = extendTheme({
   colors: { primary: '#000000', secondary: '#000000' },
   components: { ...chakraComponentStyle },
+  fonts: {
+    body: `'DotGothic16', M PLUS Rounded 1c`,
+    heading: `'DotGothic16', M PLUS Rounded 1c`,
+  },
   styles: {
     global: {
       body: {

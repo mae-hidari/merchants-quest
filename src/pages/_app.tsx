@@ -1,3 +1,6 @@
+import '@fontsource/m-plus-rounded-1c';
+import '@fontsource/dotgothic16';
+
 import { ChakraProvider, useDisclosure } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';

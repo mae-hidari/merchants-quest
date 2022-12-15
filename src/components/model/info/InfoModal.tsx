@@ -88,6 +88,11 @@ export const InfoModal: FC<InfoModalPropsType> = ({ onClose, ...props }) => {
                   ジュウニ/朱色の糸くず <ExternalLinkIcon mx="2px" />
                 </Link>
               </ListItem>
+              <ListItem>
+                <Link isExternal href="http://zioru.x0.to/">
+                  Un Almacen <ExternalLinkIcon mx="2px" />
+                </Link>
+              </ListItem>
             </UnorderedList>
           </Box>
         </Flex>

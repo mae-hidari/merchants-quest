@@ -1114,6 +1114,16 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
+"@fontsource/dotgothic16@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/dotgothic16/-/dotgothic16-4.5.10.tgz#e2fcecfe0deefeb6b6cea2d403e71b8632f7d706"
+  integrity sha512-IflAekBsND9WYQWHc3MnyLSthJB2LyE+IPjg/GsEc41PAWeY+WD4nGMpj+fYIkPBOdtGo/XTNcX38pBW/s4Wow==
+
+"@fontsource/m-plus-rounded-1c@^4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@fontsource/m-plus-rounded-1c/-/m-plus-rounded-1c-4.5.10.tgz#d98c7df36bd593bd44bc6060c3d8afecffb52d55"
+  integrity sha512-spzDBo7ni2QyY0XaTKtu97juLq9cFgWSIQ2OpP2nAd++WCaKu1KFsobWCpSqRbBJhPXdMrbanRprcslYI6EeRg==
+
 "@humanwhocodes/config-array@^0.10.4":
   version "0.10.4"
   resolved "https://registry.yarnpkg.com/@humanwhocodes/config-array/-/config-array-0.10.4.tgz#01e7366e57d2ad104feea63e72248f22015c520c"

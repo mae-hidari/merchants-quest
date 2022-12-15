@@ -17,6 +17,8 @@
     "@commitlint/config-conventional": "^17.0.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/dotgothic16": "^4.5.10",
+    "@fontsource/m-plus-rounded-1c": "^4.5.10",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.5",
     "eslint-plugin-unused-imports": "^2.0.0",
