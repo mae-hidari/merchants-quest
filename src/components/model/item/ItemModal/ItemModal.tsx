@@ -7,6 +7,7 @@ import {
   ListItem,
   OrderedList,
   Spacer,
+  Text,
   VStack,
 } from '@chakra-ui/react';
 import { FC, useCallback, useEffect, useState } from 'react';
@@ -102,7 +103,7 @@ export const ItemModal: FC<ItemModalPropsType> = ({
     header: (
       <Flex alignContent="center" w="full">
         <Spacer />
-        <Box pl="1rem">
+        <Box pl="1.25rem">
           <ItemName height="29px" item={item} width="25px"></ItemName>
         </Box>
         <Spacer />
@@ -196,15 +197,29 @@ export const ItemModal: FC<ItemModalPropsType> = ({
   };
 
   const deleteItem = {
-    content: <Flex alignItems="center">このアイテムを本当に捨てますか？</Flex>,
+    content: (
+      <Flex alignItems="center">
+        {item.id === 2 ? (
+          <Text color="red">
+            このアイテムは呪われています！
+            <br />
+            捨てることはできません。
+          </Text>
+        ) : (
+          <Text>このアイテムを本当に捨てますか？</Text>
+        )}
+      </Flex>
+    ),
     footer: (
       <Flex gap="3rem">
         <BaseButton h="2rem" onClick={() => setMode('desc')}>
           戻る
         </BaseButton>
-        <BaseButton h="2rem" onClick={onClickDelete}>
-          捨てる
-        </BaseButton>
+        {item.id !== 2 && (
+          <BaseButton h="2rem" onClick={onClickDelete}>
+            捨てる
+          </BaseButton>
+        )}
       </Flex>
     ),
     header: (

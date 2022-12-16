@@ -46,7 +46,7 @@ export const ItemData: ItemType[] = [
     description: `呪いがかけられた指輪。\n手にしてしまったが最後、呪いが精神に影響し捨てられなくなってしまう。\nどんまい。`,
     iconName: 'ring',
     id: 2,
-    name: '呪いの指輪',
+    name: '黒い指輪',
     price: 50,
   },
   {
@@ -198,7 +198,7 @@ export const ItemData: ItemType[] = [
     description: `おとぎ話に出てくる王家の紋章。\nそれを模したレプリカ。\nおとぎ話の英雄は本当に存在したのか、それを知るものは今はもう居ない。`,
     iconName: 'arms',
     id: 17,
-    name: '伝説王の紋章',
+    name: '英雄王の紋章',
     price: 100,
   },
 ];
