@@ -222,7 +222,6 @@ export const DebugModalModal: FC<DebugModalModalPropsType> = ({
       {...(mode === 'debug' && debugModalContent)}
       {...(mode === 'itemEdit' && itemEditModalContent)}
       {...(mode === 'rumorEdit' && rumorEditModalContent)}
-      scrollBehavior={'inside'}
       onClose={_onClose}
       {...props}
     ></BaseModal>

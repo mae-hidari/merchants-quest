@@ -32,6 +32,7 @@ export const BaseModal: FC<BaseModalPropsType> = ({
       closeOnEsc={false}
       closeOnOverlayClick={false}
       finalFocusRef={undefined}
+      scrollBehavior={'inside'}
       {...modalProps}
     >
       <ModalOverlay />

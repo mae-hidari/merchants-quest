@@ -105,7 +105,6 @@ export const InfoModal: FC<InfoModalPropsType> = ({ onClose, ...props }) => {
         </Flex>
       }
       header={<span>遊び方</span>}
-      scrollBehavior={'inside'}
       onClose={onClose}
       {...props}
     ></BaseModal>
